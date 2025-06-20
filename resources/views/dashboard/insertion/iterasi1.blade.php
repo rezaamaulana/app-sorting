@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Insertion Sort Interaktif dengan Riwayat Iterasi</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial;
+        }
+
+        .alert {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            border-radius: 10px;
+            background-color: #eee;
+            cursor: default;
+            position: relative;
+            transition: background 0.3s, transform 0.5s ease;
+        }
+
+        .box.selected {
+            background-color: #f8d775;
+            /* kuning */
+        }
+
+        .box.sorted {
+            background-color: #3cb371;
+            /* hijau */
+            color: white;
+            font-weight: bold;
+        }
+
+        .iteration-label {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            color: white;
+            background-color: #007bff;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-reset {
+            background-color: #dc3545;
+        }
+
+        .instruction {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+            background-color: #f1f1f1;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 450px;
+        }
+
+        /* Highlight baris iterasi aktif */
+        .active-row .box.selected {
+            background-color: #f8d775 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="alert">
+            <b>Perhatikan</b> petunjuk arahan di bawah deret bilangan dan ikuti sesuai instruksi!
+        </div>
+        <div id="displayArea"></div>
+
+        <div class="instruction" id="instructionText">
+            Klik tombol <b>Tukar</b> jika elemen kiri lebih besar dan ingin ditukar, atau klik <b>Tidak Ditukar</b>
+            untuk lanjut jika sudah benar posisi.
+        </div>
+
+        <div class="button-row">
+            <button id="btnTukar" disabled>Tukar</button>
+            <button id="btnTidakTukar" disabled>Tidak Ditukar</button>
+            <button id="btnReset" class="btn-reset">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let initialData = [1, 6, 2, 5, 4];
+        let data = [...initialData];
+        let i = 1; // indeks elemen yang sedang disisipkan
+        let j = i; // indeks perbandingan ke kiri
+        const displayArea = document.getElementById("displayArea");
+        const btnTukar = document.getElementById("btnTukar");
+        const btnTidakTukar = document.getElementById("btnTidakTukar");
+        const btnReset = document.getElementById("btnReset");
+        const instructionText = document.getElementById("instructionText");
+
+        // Array untuk simpan snapshot data tiap iterasi
+        let history = [];
+
+        function render() {
+            displayArea.innerHTML = "";
+
+            // Render semua iterasi sebelumnya
+            history.forEach((snapshot, idx) => {
+                renderRow(snapshot.data, idx + 1, false);
+            });
+
+            // Render iterasi aktif dengan highlight
+            if (i < data.length) {
+                renderRow(data, i, true, j);
+            } else {
+                // Kalau selesai, render hasil akhir
+                renderRow(data, i, false);
+                instructionText.innerText = "Pengurutan selesai ✅";
+                btnTukar.disabled = true;
+                btnTidakTukar.disabled = true;
+                return;
+            }
+
+            updateButtons();
+        }
+
+        /**
+         * Render satu baris iterasi
+         * @param {array} arr Array data angka
+         * @param {number} iteration Nomor iterasi
+         * @param {boolean} isActive Apakah baris ini iterasi aktif
+         * @param {number} activeJ Indeks j yang sedang dibandingkan (opsional)
+         */
+        function renderRow(arr, iteration, isActive = false, activeJ = null) {
+            const wrapper = document.createElement("div");
+            if (isActive) wrapper.classList.add("active-row");
+
+            const label = document.createElement("div");
+            label.className = "iteration-label";
+            label.innerText = iteration <= initialData.length - 1 ? `Iterasi ke-${iteration}` : "Pengurutan selesai ✅";
+            wrapper.appendChild(label);
+
+            const row = document.createElement("div");
+            row.className = "row";
+
+            arr.forEach((val, idx) => {
+                const box = document.createElement("div");
+                box.className = "box";
+                box.innerText = val;
+
+                // Elemen sebelum i dianggap sudah terurut
+                if (idx < iteration) {
+                    box.classList.add("sorted");
+                }
+
+                // Jika ini iterasi aktif, sorot elemen j dan j-1
+                if (isActive && activeJ !== null && (idx === activeJ || idx === activeJ - 1)) {
+                    box.classList.add("selected");
+                }
+
+                row.appendChild(box);
+            });
+
+            wrapper.appendChild(row);
+            displayArea.appendChild(wrapper);
+        }
+
+        function updateButtons() {
+            if (i >= data.length) {
+                btnTukar.disabled = true;
+                btnTidakTukar.disabled = true;
+                instructionText.innerText = "Pengurutan selesai ✅";
+                return;
+            }
+
+            if (j > 0 && data[j - 1] > data[j]) {
+                btnTukar.disabled = false;
+                btnTidakTukar.disabled = true;
+                instructionText.innerText = `Bandingkan ${data[j - 1]} > ${data[j]} → klik "Tukar" untuk tukar.`;
+            } else {
+                btnTukar.disabled = true;
+                btnTidakTukar.disabled = false;
+                instructionText.innerText = `Bandingkan ${data[j - 1]} <= ${data[j]} → klik "Tidak Ditukar" untuk lanjut.`;
+            }
+        }
+
+        function tukar() {
+            // Tukar elemen j dan j-1
+            [data[j - 1], data[j]] = [data[j], data[j - 1]];
+            j--;
+            render();
+        }
+
+        function tidakTukar() {
+            // Simpan snapshot data iterasi ini sebelum lanjut ke iterasi berikutnya
+            history.push({
+                data: [...data]
+            });
+
+            i++;
+            j = i;
+            render();
+        }
+
+        btnTukar.addEventListener("click", () => {
+            tukar();
+        });
+
+        btnTidakTukar.addEventListener("click", () => {
+            tidakTukar();
+        });
+
+        btnReset.addEventListener("click", () => {
+            data = [...initialData];
+            i = 1;
+            j = i;
+            history = [];
+            render();
+        });
+
+        // Render awal
+        render();
+    </script>
+</body>
+
+</html>

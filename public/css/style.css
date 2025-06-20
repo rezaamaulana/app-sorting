@@ -1,0 +1,67 @@
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  
+  img.kiri{
+    float: left;
+    margin: 5px;
+  }
+
+  img.tengah{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  div.a{
+    text-align: center;
+  }
+
+  div.b{
+    text-align: left;
+  }
+
+  .page-container{
+    background: whitesmoke;
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .form-group{
+    padding-bottom: 5px;
+  }
+
+  .form-group1{
+    padding-top: 5px;
+  }
+
+  /* --- BACKGROUND GAMBAR UTAMA --- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-image: url('../img/background1.gif'); /* Letakkan gambar di public/images */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: #000; /* Gunakan warna teks gelap agar tetap terbaca */
+}

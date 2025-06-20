@@ -1,0 +1,170 @@
+/* --- BACKGROUND GAMBAR UTAMA --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url('../img/background1.gif'); /* Letakkan gambar di public/images */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    color: #000; /* Gunakan warna teks gelap agar tetap terbaca */
+}
+
+/* --- HEADER --- */
+header {
+    /* background: linear-gradient(180deg, #a4a6f5, #2575fc); */
+    background: linear-gradient(180deg, #403279, #2575fc);
+    border-bottom: 2px solid #2f63ff;
+    border-radius: 0 0 16px 16px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    position: relative;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header:hover {
+    background-color: #2575fc;
+}
+
+.font-header {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #00000033, #ffffff11);
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+    animation: fadeInSlide 1s ease;
+}
+
+.home-icon {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 30px;
+    transition: transform 0.3s ease;
+}
+
+.home-icon:hover {
+    transform: scale(1.2);
+}
+
+/* --- MAIN CONTENT --- */
+main {
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7); /* transparan putih */
+    margin: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px dotted #ccc;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.left-box {
+    width: 45%;
+    border: 1px dotted black;
+    padding: 25px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.instruction-title {
+    background-color: #ddd;
+    padding: 8px;
+    font-weight: bold;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.instructions ol {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.divider {
+    width: 5px;
+    background-color: black;
+    margin: 0 15px;
+}
+
+.right-box {
+    width: 45%;
+}
+
+.data-box {
+    border: 3px solid black;
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: left;
+    border-radius: 8px;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+button.back {
+    background-color: #007bff;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.back:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+button.start {
+    background-color: #00ff00c4;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.start:hover {
+    background-color: #00e600;
+    transform: scale(1.1);
+}
+
+/* --- ANIMASI --- */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
