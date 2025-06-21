@@ -49,6 +49,11 @@
             font-weight: bold;
         }
 
+        .box.moving {
+            z-index: 10;
+            transition: transform 0.5s ease;
+        }
+
         .iteration-label {
             font-weight: bold;
             margin-top: 20px;
@@ -99,12 +104,11 @@
 
 <body>
     <div class="container">
-        Pada iterasi ini kita mengambil angka ketiga, yaitu 2. Kita akan membandingkan 2 dan 6. Apakah 2 lebih
-        kecil dari 6? Karena iya, kita akan menukar 2 dengan 6. Lalu,
-        kita akan membandingkan lagi dengan
-        angka sebelumnya, yaitu 1. Apakah 1 lebih kecil dari 2? Karena 2 tidak lebih kecil dari 1, maka 2 sudah
-        berada pada posisi yang benar, yaitu sebelum 6 dan setelah 1.
-        <br>Maka urutannya berubah. (1, 6, 2, 5, 4) menjadi (1, 2, 6, 5, 4)
+        Pada iterasi ini kita mengambil angka ketiga, yaitu 2. Kita akan membandingkan 2 dan 6. Apakah 2 lebih kecil
+        dari 6?
+        Karena iya, kita akan menukar 2 dengan 6. Lalu kita akan membandingkan lagi dengan angka sebelumnya, yaitu 1.
+        Apakah 1 lebih kecil dari 2? Karena 2 tidak lebih kecil dari 1, maka 2 sudah berada pada posisi yang benar.
+        <br><br>Maka urutannya berubah. (1, 6, 2, 5, 4) menjadi (1, 2, 6, 5, 4)
         <div id="displayAreaIterasi2"></div>
 
         <div class="instruction" id="instructionTextIterasi2">
@@ -137,7 +141,6 @@
             function Iterasi2_render() {
                 Iterasi2_displayArea.innerHTML = "";
 
-                // Tampilkan data sebelum tukar, jika sudah ada
                 if (Iterasi2_beforeSwap) {
                     Iterasi2_renderRow(Iterasi2_beforeSwap, "Iterasi ke-2", false);
                 }
@@ -174,9 +177,8 @@
                     box.className = "box";
                     box.innerText = val;
 
-                    // Tandai angka yang sudah terurut di baris "Sebelum Ditukar"
                     if (!isActive && labelText === "Iterasi ke-2") {
-                        if (idx <= Iterasi2_i - 1 && idx !== Iterasi2_j - 0) {
+                        if (idx <= Iterasi2_i - 1 && idx !== Iterasi2_j) {
                             box.classList.add("sorted");
                         }
                     } else if (!isActive && idx <= Iterasi2_i - 1) {
@@ -186,7 +188,6 @@
                         box.classList.add("sorted");
                     }
 
-                    // Tandai angka yang sedang dibandingkan
                     if (isActive && activeJ !== null && (idx === activeJ || idx === activeJ - 1)) {
                         box.classList.add("selected");
                     }
@@ -216,12 +217,36 @@
 
             function Iterasi2_tukar() {
                 if (Iterasi2_hasFinished) return;
+
                 Iterasi2_beforeSwap = [...Iterasi2_data];
 
-                [Iterasi2_data[Iterasi2_j - 1], Iterasi2_data[Iterasi2_j]] = [Iterasi2_data[Iterasi2_j], Iterasi2_data[
-                    Iterasi2_j - 1]];
-                Iterasi2_j--;
-                Iterasi2_render();
+                const boxElements = Iterasi2_displayArea.querySelectorAll(".active-row .box");
+                const boxA = boxElements[Iterasi2_j - 1];
+                const boxB = boxElements[Iterasi2_j];
+
+                const rectA = boxA.getBoundingClientRect();
+                const rectB = boxB.getBoundingClientRect();
+                const offsetX = rectB.left - rectA.left;
+
+                boxA.classList.add("moving");
+                boxB.classList.add("moving");
+
+                boxA.style.transform = `translateX(${offsetX}px)`;
+                boxB.style.transform = `translateX(-${offsetX}px)`;
+
+                setTimeout(() => {
+                    boxA.classList.remove("moving");
+                    boxB.classList.remove("moving");
+                    boxA.style.transform = "";
+                    boxB.style.transform = "";
+
+                    [Iterasi2_data[Iterasi2_j - 1], Iterasi2_data[Iterasi2_j]] = [Iterasi2_data[Iterasi2_j],
+                        Iterasi2_data[Iterasi2_j - 1]
+                    ];
+                    Iterasi2_j--;
+
+                    Iterasi2_render();
+                }, 500);
             }
 
             function Iterasi2_tidakTukar() {

@@ -43,14 +43,17 @@
 
         .box.selected {
             background-color: #f8d775;
-            /* kuning */
         }
 
         .box.sorted {
             background-color: #3cb371;
-            /* hijau */
             color: white;
             font-weight: bold;
+        }
+
+        .box.moving {
+            z-index: 10;
+            transition: transform 0.5s ease;
         }
 
         .iteration-label {
@@ -95,7 +98,6 @@
             width: 450px;
         }
 
-        /* Highlight baris iterasi aktif */
         .active-row .box.selected {
             background-color: #f8d775 !important;
         }
@@ -124,30 +126,25 @@
     <script>
         let initialData = [1, 6, 2, 5, 4];
         let data = [...initialData];
-        let i = 1; // indeks elemen yang sedang disisipkan
-        let j = i; // indeks perbandingan ke kiri
+        let i = 1;
+        let j = i;
+        let history = [];
+
         const displayArea = document.getElementById("displayArea");
         const btnTukar = document.getElementById("btnTukar");
         const btnTidakTukar = document.getElementById("btnTidakTukar");
         const btnReset = document.getElementById("btnReset");
         const instructionText = document.getElementById("instructionText");
 
-        // Array untuk simpan snapshot data tiap iterasi
-        let history = [];
-
         function render() {
             displayArea.innerHTML = "";
-
-            // Render semua iterasi sebelumnya
             history.forEach((snapshot, idx) => {
                 renderRow(snapshot.data, idx + 1, false);
             });
 
-            // Render iterasi aktif dengan highlight
             if (i < data.length) {
                 renderRow(data, i, true, j);
             } else {
-                // Kalau selesai, render hasil akhir
                 renderRow(data, i, false);
                 instructionText.innerText = "Pengurutan selesai ✅";
                 btnTukar.disabled = true;
@@ -158,20 +155,15 @@
             updateButtons();
         }
 
-        /**
-         * Render satu baris iterasi
-         * @param {array} arr Array data angka
-         * @param {number} iteration Nomor iterasi
-         * @param {boolean} isActive Apakah baris ini iterasi aktif
-         * @param {number} activeJ Indeks j yang sedang dibandingkan (opsional)
-         */
         function renderRow(arr, iteration, isActive = false, activeJ = null) {
             const wrapper = document.createElement("div");
             if (isActive) wrapper.classList.add("active-row");
 
             const label = document.createElement("div");
             label.className = "iteration-label";
-            label.innerText = iteration <= initialData.length - 1 ? `Iterasi ke-${iteration}` : "Pengurutan selesai ✅";
+            label.innerText = iteration <= initialData.length - 1 ?
+                `Iterasi ke-${iteration}` :
+                "Pengurutan selesai ✅";
             wrapper.appendChild(label);
 
             const row = document.createElement("div");
@@ -182,12 +174,8 @@
                 box.className = "box";
                 box.innerText = val;
 
-                // Elemen sebelum i dianggap sudah terurut
-                if (idx < iteration) {
-                    box.classList.add("sorted");
-                }
+                if (idx < iteration) box.classList.add("sorted");
 
-                // Jika ini iterasi aktif, sorot elemen j dan j-1
                 if (isActive && activeJ !== null && (idx === activeJ || idx === activeJ - 1)) {
                     box.classList.add("selected");
                 }
@@ -210,40 +198,52 @@
             if (j > 0 && data[j - 1] > data[j]) {
                 btnTukar.disabled = false;
                 btnTidakTukar.disabled = true;
-                instructionText.innerText = `Bandingkan ${data[j - 1]} > ${data[j]} → klik "Tukar" untuk tukar.`;
+                instructionText.innerText = `Bandingkan ${data[j - 1]} > ${data[j]} → klik "Tukar"`;
             } else {
                 btnTukar.disabled = true;
                 btnTidakTukar.disabled = false;
-                instructionText.innerText = `Bandingkan ${data[j - 1]} <= ${data[j]} → klik "Tidak Ditukar" untuk lanjut.`;
+                instructionText.innerText = `Bandingkan ${data[j - 1]} <= ${data[j]} → klik "Tidak Ditukar"`;
             }
         }
 
         function tukar() {
-            // Tukar elemen j dan j-1
-            [data[j - 1], data[j]] = [data[j], data[j - 1]];
-            j--;
-            render();
+            const activeRow = displayArea.querySelector(".active-row .row");
+            if (!activeRow) return;
+
+            const boxA = activeRow.children[j - 1];
+            const boxB = activeRow.children[j];
+            const rectA = boxA.getBoundingClientRect();
+            const rectB = boxB.getBoundingClientRect();
+            const offsetX = rectB.left - rectA.left;
+
+            boxA.classList.add("moving");
+            boxB.classList.add("moving");
+            boxA.style.transform = `translateX(${offsetX}px)`;
+            boxB.style.transform = `translateX(-${offsetX}px)`;
+
+            setTimeout(() => {
+                boxA.classList.remove("moving");
+                boxB.classList.remove("moving");
+                boxA.style.transform = "";
+                boxB.style.transform = "";
+
+                [data[j - 1], data[j]] = [data[j], data[j - 1]];
+                j--;
+                render();
+            }, 500);
         }
 
         function tidakTukar() {
-            // Simpan snapshot data iterasi ini sebelum lanjut ke iterasi berikutnya
             history.push({
                 data: [...data]
             });
-
             i++;
             j = i;
             render();
         }
 
-        btnTukar.addEventListener("click", () => {
-            tukar();
-        });
-
-        btnTidakTukar.addEventListener("click", () => {
-            tidakTukar();
-        });
-
+        btnTukar.addEventListener("click", tukar);
+        btnTidakTukar.addEventListener("click", tidakTukar);
         btnReset.addEventListener("click", () => {
             data = [...initialData];
             i = 1;
@@ -252,7 +252,6 @@
             render();
         });
 
-        // Render awal
         render();
     </script>
 </body>

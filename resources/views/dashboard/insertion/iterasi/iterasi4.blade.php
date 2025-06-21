@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Insertion Sort - Iterasi 2</title>
+    <title>Insertion Sort - Iterasi 4</title>
     <style>
         .container {
             display: flex;
@@ -47,6 +47,11 @@
             background-color: #3cb371;
             color: white;
             font-weight: bold;
+        }
+
+        .box.moving {
+            z-index: 10;
+            transition: transform 0.5s ease;
         }
 
         .iteration-label {
@@ -100,11 +105,10 @@
 <body>
     <div class="container">
         Pada iterasi ini, kita mengambil angka kelima, yaitu 4. Lalu bandingkan 6 dan 4, didapatkan bahwa 6 lebih besar
-        dari 4 maka
-        angka tersebut akan ditukar. Selanjutnya, kita akan membandingkan dengan angka
-        sebelumnya, bandingkan 4 dan 5. Apakah 4 lebih kecil dari 5? Karena iya, kita akan menukar 5 dengan 4. Setelah
-        itu, kita akan mengecek dengan
-        angka sebelumnya lagi, yaitu 2. Apakah 4 lebih kecil dari 2? Karena 4 tidak lebih kecil dari 2, maka 4 sudah
+        dari 4 maka angka tersebut akan ditukar. Selanjutnya, kita akan membandingkan dengan angka sebelumnya,
+        bandingkan 4 dan 5. Apakah 4 lebih kecil dari 5? Karena iya, kita akan menukar 5 dengan 4. Setelah itu, kita
+        akan mengecek dengan angka sebelumnya lagi, yaitu 2. Apakah 4 lebih kecil dari 2? Karena 4 tidak lebih kecil
+        dari 2, maka 4 sudah
         pada posisi benar, yaitu setelah 2 dan sebelum 5. Maka urutannya berubah (1, 2, 5, 6, 4) menjadi (1, 2, 4, 5, 6)
         <div id="displayAreaIterasi4"></div>
 
@@ -122,43 +126,39 @@
 
     <script>
         (function() {
-            let Iterasi4_initialData = [1, 2, 5, 6, 4];
-            let Iterasi4_data = [...Iterasi4_initialData];
-            let Iterasi4_i = 4;
-            let Iterasi4_j = Iterasi4_i;
-            let Iterasi4_beforeSwap = null;
-            let Iterasi4_hasFinished = false;
+            let dataAwal = [1, 2, 5, 6, 4];
+            let data = [...dataAwal];
+            let i = 4;
+            let j = i;
+            let beforeSwap = null;
+            let sudahSelesai = false;
 
-            const Iterasi4_displayArea = document.getElementById("displayAreaIterasi4");
-            const Iterasi4_btnTukar = document.getElementById("btnTukarIterasi4");
-            const Iterasi4_btnTidakTukar = document.getElementById("btnTidakTukarIterasi4");
-            const Iterasi4_btnReset = document.getElementById("btnResetIterasi4");
-            const Iterasi4_instructionText = document.getElementById("instructionTextIterasi4");
+            const displayArea = document.getElementById("displayAreaIterasi4");
+            const btnTukar = document.getElementById("btnTukarIterasi4");
+            const btnTidakTukar = document.getElementById("btnTidakTukarIterasi4");
+            const btnReset = document.getElementById("btnResetIterasi4");
+            const instructionText = document.getElementById("instructionTextIterasi4");
 
-            function Iterasi4_render() {
-                Iterasi4_displayArea.innerHTML = "";
+            function render() {
+                displayArea.innerHTML = "";
 
-                // Tampilkan data sebelum tukar, jika sudah ada
-                if (Iterasi4_beforeSwap) {
-                    Iterasi4_renderRow(Iterasi4_beforeSwap, "Iterasi ke-4", false);
+                if (beforeSwap) {
+                    renderRow(beforeSwap, "Iterasi ke-4", false);
                 }
 
-                if (Iterasi4_hasFinished) {
-                    Iterasi4_renderRow(Iterasi4_data, "Hasil Pengurutan Iterasi 4", false);
-                    Iterasi4_instructionText.innerText = "";
-                    Iterasi4_btnTukar.disabled = true;
-                    Iterasi4_btnTidakTukar.disabled = true;
+                if (sudahSelesai) {
+                    renderRow(data, "Hasil Pengurutan Iterasi 4", false);
+                    instructionText.innerText = "";
+                    btnTukar.disabled = true;
+                    btnTidakTukar.disabled = true;
                     return;
                 }
 
-                if (Iterasi4_i < Iterasi4_data.length) {
-                    Iterasi4_renderRow(Iterasi4_data, `Iterasi ke-${Iterasi4_i}`, true, Iterasi4_j);
-                }
-
-                Iterasi4_updateButtons();
+                renderRow(data, `Iterasi ke-${i}`, true, j);
+                updateButtons();
             }
 
-            function Iterasi4_renderRow(arr, labelText, isActive = false, activeJ = null) {
+            function renderRow(arr, labelText, isActive = false, activeJ = null) {
                 const wrapper = document.createElement("div");
                 if (isActive) wrapper.classList.add("active-row");
 
@@ -175,25 +175,15 @@
                     box.className = "box";
                     box.innerText = val;
 
-                    if (!isActive && labelText === "Iterasi ke-4") {
-                        // Tandai elemen yang sudah terurut (sebelum posisi j)
-                        if (idx < Iterasi4_j) {
-                            box.classList.add("sorted");
-                        }
-                        // Tambahan: beri warna hijau untuk angka 5 di baris sebelum ditukar
-                        if (val === 5) {
-                            box.classList.add("sorted");
-                        }
-
-
-                    } else if (!isActive && idx <= Iterasi4_i - 1) {
+                    if (!isActive && labelText === "Iterasi ke-4" && idx < j) {
                         box.classList.add("sorted");
-                    } else if (isActive && idx < Iterasi4_i && (activeJ === null || (idx !== activeJ && idx !==
-                            activeJ - 1))) {
+                    } else if (!isActive && idx <= i - 1) {
+                        box.classList.add("sorted");
+                    } else if (isActive && idx < i && (activeJ === null || (idx !== activeJ && idx !== activeJ -
+                            1))) {
                         box.classList.add("sorted");
                     }
 
-                    // Tandai angka yang sedang dibandingkan
                     if (isActive && activeJ !== null && (idx === activeJ || idx === activeJ - 1)) {
                         box.classList.add("selected");
                     }
@@ -202,65 +192,74 @@
                 });
 
                 wrapper.appendChild(row);
-                Iterasi4_displayArea.appendChild(wrapper);
+                displayArea.appendChild(wrapper);
             }
 
-            function Iterasi4_updateButtons() {
-                if (Iterasi4_hasFinished) return;
+            function updateButtons() {
+                if (sudahSelesai) return;
 
-                if (Iterasi4_j > 0 && Iterasi4_data[Iterasi4_j - 1] > Iterasi4_data[Iterasi4_j]) {
-                    Iterasi4_btnTukar.disabled = false;
-                    Iterasi4_btnTidakTukar.disabled = true;
-                    Iterasi4_instructionText.innerText =
-                        `Bandingkan ${Iterasi4_data[Iterasi4_j - 1]} > ${Iterasi4_data[Iterasi4_j]} → klik "Tukar"`;
+                if (j > 0 && data[j - 1] > data[j]) {
+                    btnTukar.disabled = false;
+                    btnTidakTukar.disabled = true;
+                    instructionText.innerText = `Bandingkan ${data[j - 1]} > ${data[j]} → klik "Tukar"`;
                 } else {
-                    Iterasi4_btnTukar.disabled = true;
-                    Iterasi4_btnTidakTukar.disabled = false;
-                    Iterasi4_instructionText.innerText =
-                        `Bandingkan ${Iterasi4_data[Iterasi4_j - 1]} <= ${Iterasi4_data[Iterasi4_j]} → klik "Tidak Ditukar"`;
+                    btnTukar.disabled = true;
+                    btnTidakTukar.disabled = false;
+                    instructionText.innerText = `Bandingkan ${data[j - 1]} <= ${data[j]} → klik "Tidak Ditukar"`;
                 }
             }
 
-            function Iterasi4_tukar() {
-                if (Iterasi4_hasFinished) return;
+            function tukar() {
+                if (sudahSelesai) return;
 
-                // Simpan data sebelum swap hanya jika belum disimpan
-                if (!Iterasi4_beforeSwap) {
-                    Iterasi4_beforeSwap = [...Iterasi4_data];
+                if (!beforeSwap) {
+                    beforeSwap = [...data];
                 }
 
-                // Tukar elemen
-                [Iterasi4_data[Iterasi4_j - 1], Iterasi4_data[Iterasi4_j]] = [Iterasi4_data[Iterasi4_j], Iterasi4_data[
-                    Iterasi4_j - 1]];
+                const boxElements = displayArea.querySelectorAll(".active-row .box");
+                const boxA = boxElements[j - 1];
+                const boxB = boxElements[j];
 
-                Iterasi4_j--;
+                const rectA = boxA.getBoundingClientRect();
+                const rectB = boxB.getBoundingClientRect();
+                const offsetX = rectB.left - rectA.left;
 
-                Iterasi4_render();
+                boxA.classList.add("moving");
+                boxB.classList.add("moving");
+                boxA.style.transform = `translateX(${offsetX}px)`;
+                boxB.style.transform = `translateX(-${offsetX}px)`;
+
+                setTimeout(() => {
+                    boxA.classList.remove("moving");
+                    boxB.classList.remove("moving");
+                    boxA.style.transform = "";
+                    boxB.style.transform = "";
+
+                    [data[j - 1], data[j]] = [data[j], data[j - 1]];
+                    j--;
+                    render();
+                }, 500);
             }
 
-            function Iterasi4_tidakTukar() {
-                if (Iterasi4_hasFinished) return;
-
-                if (!Iterasi4_beforeSwap) {
-                    Iterasi4_beforeSwap = [...Iterasi4_data];
-                }
-
-                Iterasi4_hasFinished = true;
-                Iterasi4_render();
+            function tidakTukar() {
+                if (sudahSelesai) return;
+                if (!beforeSwap) beforeSwap = [...data];
+                sudahSelesai = true;
+                render();
             }
 
-            Iterasi4_btnTukar.addEventListener("click", Iterasi4_tukar);
-            Iterasi4_btnTidakTukar.addEventListener("click", Iterasi4_tidakTukar);
-            Iterasi4_btnReset.addEventListener("click", () => {
-                Iterasi4_data = [...Iterasi4_initialData];
-                Iterasi4_i = 4;
-                Iterasi4_j = Iterasi4_i;
-                Iterasi4_beforeSwap = null;
-                Iterasi4_hasFinished = false;
-                Iterasi4_render();
+            btnTukar.addEventListener("click", tukar);
+            btnTidakTukar.addEventListener("click", tidakTukar);
+            btnReset.addEventListener("click", () => {
+                data = [...dataAwal];
+                i = 4;
+                j = i;
+                beforeSwap = null;
+                sudahSelesai = false;
+                render();
             });
 
-            Iterasi4_render();
+            render();
         })();
     </script>
 </body>

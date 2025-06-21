@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Insertion Sort Interaktif dengan Riwayat Iterasi</title>
+    <title>Insertion Sort Interaktif dengan Animasi</title>
     <style>
         .container {
             display: flex;
@@ -41,6 +41,11 @@
             background-color: #3cb371;
             color: white;
             font-weight: bold;
+        }
+
+        .box.moving {
+            z-index: 10;
+            transition: transform 0.5s ease;
         }
 
         .iteration-label {
@@ -112,10 +117,10 @@
 
     <script>
         (function() {
-            const initialData = [5, 7, 1, 3, 9];
+            const initialData = [1, 9, 5, 3, 7];
             let data = [...initialData];
-            let i = 1; // elemen yang sedang disisipkan
-            let j = 1; // indeks perbandingan ke kiri
+            let i = 1;
+            let j = 1;
             const displayArea = document.getElementById("insertionSort1_displayArea");
             const btnTukar = document.getElementById("insertionSort1_btnTukar");
             const btnTidakTukar = document.getElementById("insertionSort1_btnTidakTukar");
@@ -184,7 +189,6 @@
                     return;
                 }
 
-                // Semua tombol selalu aktif (kecuali saat selesai)
                 btnTukar.disabled = false;
                 btnTidakTukar.disabled = false;
 
@@ -194,12 +198,7 @@
                     return;
                 }
 
-                if (data[j - 1] > data[j]) {
-                    instructionText.innerText = `Bandingkan ${data[j - 1]} dan ${data[j]} → apakah ditukar atau tidak`;
-                } else {
-                    instructionText.innerText =
-                        `Bandingkan ${data[j - 1]} dan ${data[j]} → apakah ditukar atau tidak`;
-                }
+                instructionText.innerText = `Bandingkan ${data[j - 1]} dan ${data[j]} → apakah ditukar atau tidak`;
             }
 
             function tukar() {
@@ -207,9 +206,32 @@
                     alert(`Salah! Angka ${data[j - 1]} tidak lebih besar dari ${data[j]}, jadi tidak ditukar.`);
                     return;
                 }
-                [data[j - 1], data[j]] = [data[j], data[j - 1]];
-                j--;
-                render();
+
+                const activeRow = displayArea.querySelector(".active-row .row");
+                const boxA = activeRow.children[j - 1];
+                const boxB = activeRow.children[j];
+                const rectA = boxA.getBoundingClientRect();
+                const rectB = boxB.getBoundingClientRect();
+                const offsetX = rectB.left - rectA.left;
+
+                boxA.classList.add("moving");
+                boxB.classList.add("moving");
+                boxA.style.transform = `translateX(${offsetX}px)`;
+                boxB.style.transform = `translateX(-${offsetX}px)`;
+
+                btnTukar.disabled = true;
+                btnTidakTukar.disabled = true;
+
+                setTimeout(() => {
+                    boxA.classList.remove("moving");
+                    boxB.classList.remove("moving");
+                    boxA.style.transform = "";
+                    boxB.style.transform = "";
+
+                    [data[j - 1], data[j]] = [data[j], data[j - 1]];
+                    j--;
+                    render();
+                }, 500);
             }
 
             function tidakTukar() {
