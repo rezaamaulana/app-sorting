@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="font-header">SORTING EVALUASI</div>
-        <span class="welcome-text me-3">Semangat Mengerjakan📝 {{ Auth::user()->nama }} ({{ Auth::user()->role }})</span>
+        <span class="welcome-text me-3">{{ Auth::user()->nama }} ({{ Auth::user()->role }})</span>
     </header>
 
     <main>

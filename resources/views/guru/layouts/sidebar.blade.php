@@ -22,7 +22,7 @@
                     <a class="nav-link text-white d-flex justify-content-between align-items-center toggle-link"
                         data-bs-toggle="collapse" href="#bubbleSubmenu" role="button"
                         aria-expanded="{{ Request::is('guru/hasil-belajar/*') ? 'true' : 'false' }}">
-                        <span><i class="fas fa-sort-numeric-down me-2"></i>Hasil Kuis</span>
+                        <span><i class="fas fa-sort-numeric-down me-2"></i>Hasil Belajar</span>
                         <span class="toggle-icon">{{ Request::is('guru/hasil-belajar/*') ? '⏫' : '⏬' }}</span>
                     </a>
                     <div class="collapse ps-4 {{ Request::is('guru/hasil-belajar/*') ? 'show' : '' }}"
