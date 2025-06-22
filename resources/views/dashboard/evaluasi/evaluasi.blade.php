@@ -303,7 +303,7 @@
                         cancelButtonText: "Tidak, Batalkan",
                     }).then((willSubmit) => {
                         if (willSubmit) {
-                            window.location.href = ""
+                            window.location.href = "/dashboard/evaluasi/evaluasiAwal"
                         }
                     });
                 })
@@ -453,9 +453,9 @@
 
                     let footer = `<div class="d-flex justify-content-between align-items-center">`
                     footer += `<a href="/dashboard"  class="btn btn-secondary">Kembali ke Materi!</a>`
-                    if (nilai >= {{ $kkmValue }}) {
-                        footer += `  <a href=""  class="btn btn-primary">Materi Selanjutnya!</a>`
-                    }
+                    // if (nilai >= {{ $kkmValue }}) {
+                    //     footer += `  <a href=""  class="btn btn-primary">Materi Selanjutnya!</a>`
+                    // }
                     document.getElementById("modal-hasil").innerHTML += footer + `</div>`
 
 
