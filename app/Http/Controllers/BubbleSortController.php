@@ -42,7 +42,7 @@ class BubbleSortController extends Controller
         $materi = 'latihan-Bubble-Sort';
         $kkm = Kkm::where('materi', $materi)->first();
         $kkmValue = $kkm ? $kkm->kkm : 70; // Ambil KKM atau 70 jika tidak ada
-        return view("dashboard.latihan.IsiLatihanBubble", compact("soalQuiz", "materi", "kkmValue"));
+        return view("dashboard.latihan.isiLatihanBubble", compact("soalQuiz", "materi", "kkmValue"));
     }
 
     //Halaman Isi Kuis
