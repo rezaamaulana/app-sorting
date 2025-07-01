@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>Deret Bilangan Modular - Iterasi 3</title>
+    <!-- Tambahkan SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        /* ID dan class umum tetap boleh sama jika hanya digunakan lokal (seperti .box), namun jika style di-include, sebaiknya pakai namespace khusus juga */
         .container-3 {
             display: flex;
             flex-direction: column;
@@ -123,7 +124,7 @@
 
 <body>
     <div class="container-3" id="container-3">
-        Cari bilangan terkecil di bagian belum terurut (setelah angka 2):
+        <a>Cari bilangan terkecil di bagian belum terurut (setelah angka 2):</a>
         <br>
         <div id="displayArea-3"></div>
         <div class="instruction-3" id="instructionText-3">
@@ -186,7 +187,12 @@
                         box.addEventListener("click", () => {
                             const minIndex = findMinIndex3From(currentIndex3, data3);
                             if (idx !== minIndex) {
-                                alert("Ini bukan angka paling minimum, tolong perhatikan sekali lagi.");
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Oops!',
+                                    text: 'Ini bukan angka paling minimum, tolong perhatikan sekali lagi.',
+                                    confirmButtonText: 'Oke'
+                                });
                                 return;
                             }
                             clearSelection3();

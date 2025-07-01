@@ -99,8 +99,10 @@
 
 <body>
     <div class="container">
-        Langkah pertama, bandingkan angka pertama dan kedua, yaitu 1 dan 6. Didapatkan 1 lebih kecil dari 6, maka urutan
-        angka tersebut tetap (1,6). (1, 6, 2, 5, 4) menjadi (1, 6, 2, 5, 4)
+        <a>Langkah pertama, bandingkan angka pertama dan kedua, yaitu 1 dan 6. Didapatkan 1 lebih kecil dari 6, maka
+            urutan
+            angka tersebut tetap (1,6). (1, 6, 2, 5, 4) menjadi (1, 6, 2, 5, 4)
+        </a>
         <div id="displayAreaIterasi1"></div>
 
         <div class="instruction" id="instructionTextIterasi1">

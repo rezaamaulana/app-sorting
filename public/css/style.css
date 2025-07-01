@@ -46,6 +46,19 @@
     margin-top: 20px;
   }
 
+  .page-container1{
+    background: whitesmoke;
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin-left: 50px;
+    margin-top: 20px;
+  }
+
   .form-group{
     padding-bottom: 5px;
   }

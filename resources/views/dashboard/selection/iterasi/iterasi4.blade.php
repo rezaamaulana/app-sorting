@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Deret Bilangan Modular - Iterasi 4</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .container-4 {
             display: flex;
@@ -122,7 +123,7 @@
 
 <body>
     <div class="container-4" id="container-4">
-        Cari bilangan terkecil di bagian belum terurut (setelah angka 3):
+        <a>Cari bilangan terkecil di bagian belum terurut (setelah angka 3):</a>
         <br>
         <div id="displayArea-4"></div>
         <div class="instruction-4" id="instructionText-4">
@@ -155,7 +156,6 @@
 
                 const label = document.createElement("div");
                 label.className = `iteration-label-${id}`;
-
                 label.innerText = iteration > maxIterations ?
                     "Hasil pengurutan selesai ✅" :
                     `Iterasi ke-${iteration + 1}`;
@@ -183,7 +183,12 @@
                         box.addEventListener("click", () => {
                             const minIndex = findMinIndexFrom(currentIndex, data);
                             if (idx !== minIndex) {
-                                alert("Ini bukan angka paling minimum, tolong perhatikan sekali lagi.");
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Oops!',
+                                    text: 'Ini bukan angka paling minimum, tolong perhatikan sekali lagi.',
+                                    confirmButtonText: 'Oke'
+                                });
                                 return;
                             }
                             clearSelection();

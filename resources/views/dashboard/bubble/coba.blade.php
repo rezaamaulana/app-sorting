@@ -1,42 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deret Bilangan</title>
+    <title>Simulasi Bubble Sort 1A</title>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f9fc;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
         }
 
-        .container {
+        .container1A {
             max-width: 800px;
             margin: 40px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 12px;
+            background-color: #fff;
+            padding: 30px 20px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
 
-        .alert {
-            background-color: #e3f2fd;
-            border-left: 5px solid #2196f3;
-            padding: 10px 15px;
+        .alert1A {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
             margin-bottom: 20px;
             font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
         }
 
-        .number-row {
+        #infoIterasi1A {
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rowAngka1A {
             display: flex;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .number-box {
+        .kotakAngka1A {
             width: 50px;
             height: 50px;
             line-height: 50px;
@@ -45,46 +56,77 @@
             border: 2px solid black;
             background-color: #ffeb3b;
             margin: 5px;
-            border-radius: 15px;
-            transition: transform 0.4s;
+            border-radius: 12px;
         }
 
-        .number-box.swap-animate-left {
-            animation: swapLeft 0.4s forwards;
+        .kotakAngka1A.animKiri {
+            animation: gerakKiri 0.4s forwards;
         }
 
-        .number-box.swap-animate-right {
-            animation: swapRight 0.4s forwards;
+        .kotakAngka1A.animKanan {
+            animation: gerakKanan 0.4s forwards;
         }
 
-        @keyframes swapLeft {
+        @keyframes gerakKiri {
             from {
                 transform: translateX(0);
             }
 
             to {
-                transform: translateX(-62px);
+                transform: translateX(-60px);
             }
         }
 
-        @keyframes swapRight {
+        @keyframes gerakKanan {
             from {
                 transform: translateX(0);
             }
 
             to {
-                transform: translateX(62px);
+                transform: translateX(60px);
             }
         }
 
-        .iterasi-label {
-            animation: fadeIn 0.5s ease-in-out;
-            font-weight: bold;
+        .tombolKontrol1A {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tombolKontrol1A button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+
+        #btnTukar1A {
+            background-color: #007bff;
+        }
+
+        #btnSkip1A {
+            background-color: #6c757d;
+        }
+
+        #btnUlang1A {
+            background-color: #dc3545;
+        }
+
+        #status1A {
+            margin-top: 15px;
             text-align: center;
-            margin: 15px 0;
+            font-size: 16px;
         }
 
-        @keyframes fadeIn {
+        .labelIterasi1A {
+            animation: munculPelan 0.5s ease-in-out;
+        }
+
+        @keyframes munculPelan {
             from {
                 opacity: 0;
                 transform: translateY(-5px);
@@ -95,228 +137,182 @@
                 transform: translateY(0);
             }
         }
-
-        .control-buttons {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .control-buttons button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .control-buttons button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        #status {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 16px;
-        }
-
-        .arrow-swap {
-            position: absolute;
-            font-size: 24px;
-            color: #ff5722;
-            user-select: none;
-            animation: slideArrow 0.8s ease-in-out infinite alternate;
-        }
-
-        @keyframes slideArrow {
-            0% {
-                transform: translateX(-50%) translateX(-5px);
-                opacity: 0.7;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateX(-50%) translateX(5px);
-                opacity: 0.7;
-            }
-        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        Untuk pengurutan keseluruhannya sebagai berikut:
-        <br><br>
-        <div class="alert">
-            💡 <b>Perhatikan:</b> Petunjuk Arahan Dibawah Deret Bilangan dan Ikuti Sesuai Instruksi!
+    <div class="container1A">
+        <div class="alert1A">
+            <b>Petunjuk:</b> Klik tombol sesuai hasil perbandingan dua angka!
         </div>
 
-        <div id="infoIterasi" class="iterasi-label"></div>
-        <div id="rowsContainer"></div>
+        <div id="infoIterasi1A">Iterasi ke-1</div>
+        <div id="zonaDeret1A"></div>
 
-        <div class="control-buttons">
-            <button id="btnTukar">Tukar</button>
-            <button id="btnTidakTukar">Tidak Ditukar</button>
-            <button id="btnReset" style="background-color: #dc3545;">Reset</button>
+        <div class="tombolKontrol1A">
+            <button id="btnTukar1A">Tukar</button>
+            <button id="btnSkip1A">Tidak Ditukar</button>
+            <button id="btnUlang1A">Reset</button>
         </div>
 
-        <div id="status"></div>
+        <div id="status1A"></div>
     </div>
 
     <script>
-        let i = 0;
-        let j = 1;
-        const initialData = [2, 8, 4, 3, 9];
-        let currentData = [...initialData];
+        let urutanI1A = 0;
+        let urutanJ1A = 0;
+        const dataAwal1A = [7, 1, 5, 3, 6];
+        let dataAktif1A = [...dataAwal1A];
 
-        const rowsContainer = document.getElementById("rowsContainer");
-        const btnTukar = document.getElementById("btnTukar");
-        const btnTidakTukar = document.getElementById("btnTidakTukar");
-        const btnReset = document.getElementById("btnReset");
-        const status = document.getElementById("status");
+        const zonaDeret1A = document.getElementById("zonaDeret1A");
+        const btnTukar1A = document.getElementById("btnTukar1A");
+        const btnSkip1A = document.getElementById("btnSkip1A");
+        const btnUlang1A = document.getElementById("btnUlang1A");
+        const status1A = document.getElementById("status1A");
 
-        function renderIterasiText(nomorIterasi) {
-            const textDiv = document.createElement("div");
-            textDiv.className = "iterasi-label";
-            textDiv.innerText = `Iterasi ke-${nomorIterasi}`;
-            rowsContainer.appendChild(textDiv);
+        function buatLabelIterasi1A(nomor) {
+            const label = document.createElement("div");
+            label.className = "labelIterasi1A";
+            label.innerText = `Iterasi ke-${nomor}`;
+            label.style.fontWeight = "bold";
+            label.style.textAlign = "center";
+            label.style.marginBottom = "10px";
+            label.style.color = "#333";
+            zonaDeret1A.appendChild(label);
         }
 
-        function updateInfoIterasi() {
-            const info = document.getElementById("infoIterasi");
-            if (i < 1) {
-                info.innerText = `Iterasi ke-${i + 1}`;
+        function tampilkanBaris1A(data, highlightIndex = null) {
+            const baris = document.createElement("div");
+            baris.className = "rowAngka1A";
+
+            data.forEach((angka, index) => {
+                const box = document.createElement("div");
+                box.className = "kotakAngka1A";
+                box.innerText = angka;
+
+                if (highlightIndex !== null && (index === highlightIndex || index === highlightIndex + 1)) {
+                    box.style.backgroundColor = "#90caf9";
+                }
+
+                if (urutanJ1A === data.length - 2 && index === data.length - 1) {
+                    box.style.backgroundColor = "#90caf9";
+                    box.style.fontWeight = "bold";
+                }
+
+                if (urutanI1A > 0 && index >= dataAktif1A.length - urutanI1A) {
+                    box.style.backgroundColor = "#90ee90";
+                    box.style.fontWeight = "bold";
+                }
+
+                baris.appendChild(box);
+            });
+
+            zonaDeret1A.appendChild(baris);
+        }
+
+        function updateTombol1A() {
+            const kiri = dataAktif1A[urutanJ1A];
+            const kanan = dataAktif1A[urutanJ1A + 1];
+
+            if (urutanI1A >= dataAktif1A.length - 1) {
+                status1A.innerText = "Pengurutan selesai! ✅";
+            } else if (kiri < kanan) {
+                status1A.innerHTML = `Bandingkan ${kiri} dan ${kanan}, apakah ditukar atau tidak`;
             } else {
-                info.innerText = `Iterasi ke-1 selesai ⛔`;
+                status1A.innerHTML = `Bandingkan ${kiri} dan ${kanan}, apakah ditukar atau tidak`;
             }
         }
 
-        function renderRow(data, highlightIndex = null) {
-            const row = document.createElement("div");
-            row.className = "number-row";
+        function lanjutIterasi1A() {
+            urutanJ1A++;
 
-            data.forEach((num, idx) => {
-                const box = document.createElement("div");
-                box.className = "number-box";
-                box.innerText = num;
-
-                if (highlightIndex !== null && (idx === highlightIndex || idx === highlightIndex + 1)) {
-                    box.style.backgroundColor = "#add8e6";
+            if (urutanJ1A >= dataAktif1A.length - 1 - urutanI1A) {
+                urutanI1A++;
+                urutanJ1A = 0;
+                if (urutanI1A < dataAktif1A.length - 1) {
+                    buatLabelIterasi1A(urutanI1A + 1);
                 }
+            }
 
-                row.appendChild(box);
-            });
-
-            rowsContainer.appendChild(row);
+            if (urutanI1A < dataAktif1A.length - 1) {
+                tampilkanBaris1A(dataAktif1A, urutanJ1A);
+                updateTombol1A();
+            } else {
+                tampilkanBaris1A(dataAktif1A);
+                updateTombol1A();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Selesai!',
+                    text: 'Pengurutan selesai!',
+                    confirmButtonText: 'Oke'
+                });
+            }
         }
 
-        function updateButtonState() {
-            if (i >= 1) {
-                btnTukar.disabled = true;
-                btnTidakTukar.disabled = true;
-                status.innerText = "";
+        btnTukar1A.addEventListener("click", () => {
+            if (urutanI1A >= dataAktif1A.length - 1) return;
+
+            const kiri = dataAktif1A[urutanJ1A];
+            const kanan = dataAktif1A[urutanJ1A + 1];
+
+            if (kiri <= kanan) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Salah',
+                    text: `${kiri} < ${kanan}, jadi tidak boleh ditukar.`,
+                    confirmButtonText: 'Mengerti!'
+                });
                 return;
             }
 
-            const kiri = currentData[j];
-            const kanan = currentData[j + 1];
+            const boxBaris = zonaDeret1A.lastChild.querySelectorAll(".kotakAngka1A");
+            const kiriBox = boxBaris[urutanJ1A];
+            const kananBox = boxBaris[urutanJ1A + 1];
 
-            if (kiri < kanan) {
-                btnTukar.disabled = true;
-                btnTidakTukar.disabled = false;
-                status.innerHTML = `Sekarang bandingkan ${kiri} < ${kanan}, angka <b>tidak ditukar</b>`;
-            } else {
-                btnTukar.disabled = false;
-                btnTidakTukar.disabled = true;
-                status.innerHTML = `Sekarang bandingkan ${kiri} > ${kanan}, angka <b>ditukar</b>`;
-            }
-        }
-
-        function lanjutkanStep() {
-            j++;
-
-            if (j >= currentData.length - 1 - i) {
-                i++;
-                j = 0;
-                if (i < 1) {
-                    renderIterasiText(i + 1);
-                }
-            }
-
-            if (i < 1) {
-                renderRow(currentData, j);
-                updateButtonState();
-            } else {
-                renderRow(currentData);
-                updateButtonState();
-            }
-
-            updateInfoIterasi();
-        }
-
-        btnTukar.addEventListener("click", () => {
-            const row = rowsContainer.lastChild;
-            const rowBoxes = row.querySelectorAll(".number-box");
-
-            const box1 = rowBoxes[j];
-            const box2 = rowBoxes[j + 1];
-
-            box1.classList.add("swap-animate-right");
-            box2.classList.add("swap-animate-left");
+            kiriBox.classList.add("animKanan");
+            kananBox.classList.add("animKiri");
 
             setTimeout(() => {
-                const temp = currentData[j];
-                currentData[j] = currentData[j + 1];
-                currentData[j + 1] = temp;
+                const temp = dataAktif1A[urutanJ1A];
+                dataAktif1A[urutanJ1A] = dataAktif1A[urutanJ1A + 1];
+                dataAktif1A[urutanJ1A + 1] = temp;
 
-                box1.classList.remove("swap-animate-right");
-                box2.classList.remove("swap-animate-left");
-
-                renderRow(currentData);
-
-                // HENTI ketika 8 dan 4 ditukar
-                if (
-                    (temp === 8 && currentData[j] === 4) ||
-                    (temp === 4 && currentData[j] === 8)
-                ) {
-                    btnTukar.disabled = true;
-                    btnTidakTukar.disabled = true;
-                    status.innerText = "Berhenti karena sudah menukar 8 dan 4";
-                } else {
-                    lanjutkanStep();
-                }
+                lanjutIterasi1A();
             }, 400);
         });
 
-        btnTidakTukar.addEventListener("click", () => {
-            lanjutkanStep();
+        btnSkip1A.addEventListener("click", () => {
+            if (urutanI1A >= dataAktif1A.length - 1) return;
+
+            const kiri = dataAktif1A[urutanJ1A];
+            const kanan = dataAktif1A[urutanJ1A + 1];
+
+            if (kiri > kanan) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Salah',
+                    text: `${kiri} > ${kanan}, jadi harusnya ditukar.`,
+                    confirmButtonText: 'Oke!'
+                });
+                return;
+            }
+
+            lanjutIterasi1A();
         });
 
-        btnReset.addEventListener("click", () => {
-            currentData = [...initialData];
-            i = 0;
-            j = 0;
-            rowsContainer.innerHTML = "";
-            status.innerText = "";
-            btnTukar.disabled = false;
-            btnTidakTukar.disabled = false;
-            renderRow(currentData, j);
-            updateButtonState();
-            updateInfoIterasi();
+        btnUlang1A.addEventListener("click", () => {
+            dataAktif1A = [...dataAwal1A];
+            urutanI1A = 0;
+            urutanJ1A = 0;
+            zonaDeret1A.innerHTML = "";
+            status1A.innerText = "";
+            tampilkanBaris1A(dataAktif1A, urutanJ1A);
+            updateTombol1A();
         });
 
-        // Start
-        renderRow(currentData, j);
-        updateButtonState();
-        updateInfoIterasi();
+        // Mulai simulasi
+        tampilkanBaris1A(dataAktif1A, urutanJ1A);
+        updateTombol1A();
     </script>
 </body>
 

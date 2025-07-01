@@ -104,11 +104,13 @@
 
 <body>
     <div class="container">
-        Pada iterasi ini kita mengambil angka ketiga, yaitu 2. Kita akan membandingkan 2 dan 6. Apakah 2 lebih kecil
-        dari 6?
-        Karena iya, kita akan menukar 2 dengan 6. Lalu kita akan membandingkan lagi dengan angka sebelumnya, yaitu 1.
-        Apakah 1 lebih kecil dari 2? Karena 2 tidak lebih kecil dari 1, maka 2 sudah berada pada posisi yang benar.
-        <br><br>Maka urutannya berubah. (1, 6, 2, 5, 4) menjadi (1, 2, 6, 5, 4)
+        <a>Pada iterasi ini kita mengambil angka ketiga, yaitu 2. Kita akan membandingkan 2 dan 6. Apakah 2 lebih kecil
+            dari 6?
+            Karena iya, kita akan menukar 2 dengan 6. Lalu kita akan membandingkan lagi dengan angka sebelumnya, yaitu
+            1.
+            Apakah 1 lebih kecil dari 2? Karena 2 tidak lebih kecil dari 1, maka 2 sudah berada pada posisi yang benar.
+            <br>Maka urutannya berubah. (1, 6, 2, 5, 4) menjadi (1, 2, 6, 5, 4)
+        </a>
         <div id="displayAreaIterasi2"></div>
 
         <div class="instruction" id="instructionTextIterasi2">

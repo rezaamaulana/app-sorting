@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Deret Bilangan Modular</title>
+    <!-- Tambahkan SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .container {
             display: flex;
@@ -120,7 +122,7 @@
 
 <body>
     <div class="container" id="container-1">
-        Cari bilangan terkecil di bagian belum terurut:
+        <a>Cari bilangan terkecil di bagian belum terurut:</a>
         <br>
         <div id="displayArea-1"></div>
         <div class="instruction" id="instructionText-1">
@@ -182,7 +184,13 @@
                         box.addEventListener("click", () => {
                             const minIndex = findMinIndexFrom(currentIndex, data);
                             if (idx !== minIndex) {
-                                alert("Ini bukan angka paling minimum, tolong perhatikan sekali lagi.");
+                                // ALERT diganti jadi SweetAlert
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Oops!',
+                                    text: 'Ini bukan angka paling minimum, tolong perhatikan sekali lagi.',
+                                    confirmButtonText: 'Oke'
+                                });
                                 return;
                             }
 

@@ -7,18 +7,19 @@
 
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border rounded shadow-lg bg-light">
-            <h2 class="fw-bold px-3 py-2 border-start border-4 border-primary">Pengurutan(Sorting)</h2>
+            <h2 class="fw-bold px-3 py-2 border-start border-4 border-primary">Pengurutan <i>(Sorting)</i></h2>
         </div>
 
-        <p>Pengurutan (sorting) adalah proses untuk menyusun atau mengurutkan
+        <p>Pengurutan <i>(sorting)</i> adalah proses untuk menyusun atau mengurutkan
             elemen-elemen dalam suatu koleksi data (seperti array, daftar, atau lainnya) dalam urutan tertentu, misalnya
-            urutan menaik (ascending) atau menurun (descending).
+            urutan menaik <mark><i>(ascending)</i></mark> atau menurun <mark><i>(descending)</i></mark>.
             <br><br>
             Saat merapikan sesuatu, misalnya koleksi buku, kita menyusun buku
             tersebut dengan menggunakan suatu aturan. Misalnya, jika kita memiliki koleksi buku cerita berseri, kemungkinan
             besar kita akan menyusunnya secara berurut dari volume pertama hingga volume yang terbaru. Atau, ketika sedang
             berbaris, kita diminta untuk membentuk barisan berdasarkan tinggi badan. Hal-hal tersebut merupakan sebuah
-            proses pengurutan atau sorting. Proses pengurutan akan menjadi bagian yang tidak terpisahkan dari program
+            proses pengurutan atau <mark><i>sorting</i></mark>. Proses pengurutan akan menjadi bagian yang tidak terpisahkan
+            dari program
             komputer atau aplikasi yang sering kita gunakan. Pada aktivitas ini, kita akan melihat bagaimana proses
             pengurutan dapat dilakukan dengan menggunakan berbagai strategi.
             <br><br>Pelajarilah strateginya! <br><br>
@@ -44,7 +45,9 @@
             lebih kecil (bergantung pada pengurutan yang digunakan).
 
             <br><br>Terdapat beberapa teknik (algoritma) untuk melakukan pengurutan
-            seperti bubble sort, insertion sort, dan selection sort. Pada materi ini, hanya akan diberikan penjelasan untuk
+            seperti <mark><i>bubble sort</i></mark>, <mark><i>insertion sort</i></mark>, dan <mark><i>selection
+                    sort</i></mark>. Pada materi ini, hanya akan
+            diberikan penjelasan untuk
             setiap tiga teknik ialah sebagai berikut.
 
         </p>

@@ -5,6 +5,11 @@ p {
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     text-align: justify;
+    font-size: 16px;
+}
+
+a {
+    font-size: 16px;
 }
 
 .data-box1{
@@ -22,6 +27,7 @@ p {
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     text-indent: 20px;
     text-align: justify;
+    font-size: 16px;
 }
 
 h5{
@@ -42,3 +48,11 @@ h5{
     max-width: 600px;
     margin-top: 10px;
 }
+
+footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }

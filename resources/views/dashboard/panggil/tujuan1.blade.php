@@ -76,9 +76,11 @@
             </div>
             <div class="content">
                 <ul>
-                    <li>Siswa memahami konsep dasar Bubble Sort sebagai metode pengurutan dengan membandingkan dan
+                    <li>Siswa memahami konsep dasar <i>Bubble Sort</i> sebagai metode pengurutan dengan membandingkan
+                        dan
                         menukar angka bersebelahan hingga data terurut.</li>
-                    <li>Siswa mengidentifikasi langkah-langkah utama Bubble Sort, termasuk pembandingan, pertukaran, dan
+                    <li>Siswa mengidentifikasi langkah-langkah utama <i>Bubble Sort</i>, termasuk pembandingan,
+                        pertukaran, dan
                         iterasi hingga selesai.</li>
                 </ul>
             </div>

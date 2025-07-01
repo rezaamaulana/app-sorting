@@ -107,8 +107,9 @@
 
 <body>
     <div class="container" id="bubbleContainerV3">
-        Bandingkan bilangan keempat dan kelima, yaitu 8 dan 9. Karena 8 lebih kecil dari 9, maka tidak ditukar.
-        <br><br>
+        <a>Bandingkan bilangan keempat dan kelima, yaitu 8 dan 9. Karena 8 lebih kecil dari 9, maka tidak ditukar.
+            <br><br>
+        </a>
         <div id="bubbleIterasiV3" class="iterasi-label"></div>
         <div id="bubbleRowsV3"></div>
         <div class="control-buttons">

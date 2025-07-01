@@ -107,9 +107,11 @@
 
 <body>
     <div class="frame">
-        Langkah pertama, tinjau bilangan kedua, bandingkan bilangan pertama dan kedua, yaitu 8 dan 2. Antara bilangan
-        tersebut 8 yang lebih besar dari 2 maka urutannya diubah menjadi (<b>2, 8,</b> 4, 3, 9).
-        <br><br>
+        <a>Langkah pertama, tinjau bilangan kedua, bandingkan bilangan pertama dan kedua, yaitu 8
+            dan 2. Antara bilangan
+            tersebut 8 yang lebih besar dari 2 maka urutannya diubah menjadi (<b>2, 8,</b> 4, 3, 9).
+            <br><br>
+        </a>
 
         <div id="iterasiInfo" class="judul-iterasi"></div>
         <div id="barisAngka"></div>

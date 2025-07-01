@@ -44,7 +44,6 @@
             background-color: #eee;
             cursor: pointer;
             transition: background 0.3s;
-            /* transition: transform 0.5s ease; */
             position: relative;
         }
 
@@ -54,12 +53,10 @@
 
         .box.selected {
             background-color: #f8d775;
-            /* kuning */
         }
 
         .box.sorted {
             background-color: #3cb371;
-            /* hijau stabil */
             color: white;
             font-weight: bold;
         }
@@ -95,8 +92,6 @@
             color: white;
             padding: 10px 15px;
             margin: 10px;
-
-            /* merah */
         }
 
         .button-row {
@@ -114,14 +109,12 @@
             border-radius: 8px;
         }
     </style>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
-
-    {{-- <div class="alert alert-info">
-        <i class="bi bi-info-circle"></i> <b>Perhatikan</b> Petunjuk Arahan Dibawah Deret Bilangan dan Ikuti
-        Sesuai Instruksi!!
-    </div> --}}
     <div class="container">
         <div class="alertv1">
             <b>Perhatikan:</b> Klik angka paling minimum untuk menukarnya ke posisi paling kiri!
@@ -174,7 +167,12 @@
                     box.addEventListener("click", () => {
                         const minIndex = findMinIndexFrom(currentIndex, data);
                         if (idx !== minIndex) {
-                            alert("Ini bukan angka paling minimum, tolong perhatikan sekali lagi.");
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Ups!',
+                                text: 'Ini bukan angka paling minimum, tolong perhatikan sekali lagi.',
+                                confirmButtonText: 'Oke'
+                            });
                             return;
                         }
 
@@ -214,48 +212,40 @@
             if (selectedIndex == null) return;
 
             const rows = document.querySelectorAll(".row");
-            const currentRow = rows[rows.length - 1]; // baris terakhir = baris aktif
+            const currentRow = rows[rows.length - 1];
             const boxes = currentRow.querySelectorAll(".box");
 
             const boxA = boxes[currentIndex];
             const boxB = boxes[selectedIndex];
 
-            // Hitung selisih posisi horizontal
             const offsetA = boxA.offsetLeft;
             const offsetB = boxB.offsetLeft;
             const deltaX = offsetB - offsetA;
 
-            // Aktifkan animasi
             boxA.style.transition = "transform 0.5s ease";
             boxB.style.transition = "transform 0.5s ease";
             boxA.style.transform = `translateX(${deltaX}px)`;
             boxB.style.transform = `translateX(${-deltaX}px)`;
 
-            // Setelah animasi selesai
             setTimeout(() => {
-                // Reset transform visual
                 boxA.style.transition = "";
                 boxB.style.transition = "";
                 boxA.style.transform = "";
                 boxB.style.transform = "";
 
-                // Tukar data di array
                 [data[currentIndex], data[selectedIndex]] = [data[selectedIndex], data[currentIndex]];
 
-                // Tandai elemen saat ini sebagai sudah diurutkan
                 sortedIndices.push(currentIndex);
                 currentIndex++;
                 btnTukar.disabled = true;
                 clearSelection();
 
                 const isDone = currentIndex >= maxIterations;
-                if (isDone) sortedIndices.push(currentIndex); // tandai terakhir
+                if (isDone) sortedIndices.push(currentIndex);
 
                 renderRow(data, currentIndex + 1, isDone);
             }, 500);
         }
-
-
 
         btnTukar.addEventListener("click", () => {
             swapAndMarkSorted();
@@ -271,7 +261,6 @@
             renderRow(data, currentIndex + 1);
         });
 
-        // Initial render
         renderRow(data, currentIndex + 1);
     </script>
 </body>

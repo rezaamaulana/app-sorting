@@ -121,10 +121,13 @@
 
 <body>
     <div class="container" id="bubbleContainerV9">
-        Pada iterasi selanjutnya, kita bandingkan bilangan pertama dan kedua, yaitu 2 dan 3. Antara bilangan tersebut 2
-        lebih kecil dari 3 maka urutannya tidak diubah (2, 3, 4, 8, 9). Jadi hasil pengurutan dari terbesar ke terkecil
-        adalah (<b>2, 3,</b> 4, 8, 9).
-        <br><br>
+        <a>Pada iterasi selanjutnya, kita bandingkan bilangan pertama dan kedua, yaitu 2 dan 3. Antara bilangan tersebut
+            2
+            lebih kecil dari 3 maka urutannya tidak diubah (2, 3, 4, 8, 9). Jadi hasil pengurutan dari terbesar ke
+            terkecil
+            adalah (<b>2, 3,</b> 4, 8, 9).
+            <br><br>
+        </a>
 
         <div id="bubbleIterasiV9" class="iterasi-label"></div>
         <div id="bubbleRowsV9"></div>
@@ -234,7 +237,7 @@
                     btnTukar.disabled = true;
                     btnTidakTukar.disabled = true;
                     status.innerHTML =
-                    `${dataSekarangV9[j9 + 1]} dan ${dataSekarangV9[j9]} sudah bertukar.`;
+                        `${dataSekarangV9[j9 + 1]} dan ${dataSekarangV9[j9]} sudah bertukar.`;
                 }, 400);
             });
 

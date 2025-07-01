@@ -1,12 +1,13 @@
 <header class="navbar navbar-dark sticky-top bg-header flex-md-nowrap p-0 shadow">
     <div class="d-flex align-items-center flex-grow-1 px-3">
-        <img class="logo me-2" src="{{ asset('img/logo3.png') }}" height="60px" alt="Logo">
-        <a class="navbar-brand fs-5 fw-bold text-uppercase" href="#">Sorting |</a>
+        <img class="logo me-2" src="{{ asset('img/logo3.png') }}" style="margin-left: 10px" height="60px" alt="Logo">
+        <a class="navbar-brand fs-5 fw-bold text-uppercase" style="margin-left: 10px">Sorting App |</a>
         <span class="welcome-text me-3"> {{ Auth::user()->nama }} ({{ Auth::user()->role }})</span>
     </div>
     <div class="d-flex align-items-center">
         <a href="{{ url('/dashboard/panggil/cptp') }}" class="cp" style="margin-right: 20px">TP & CP</a>
-        <a href="{{ route('logout') }}" class="btn btn-danger btn-sm" style="margin-right: 20px">Keluar</a>
+        <a href="{{ route('logout') }}" id="button-keluar" class="btn btn-danger btn-sm"
+            style="margin-right: 20px">Keluar</a>
         <button class="navbar-toggler d-md-none collapsed ms-2" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -115,3 +116,26 @@
         }
     }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById("button-keluar").addEventListener("click", function(e) {
+        e.preventDefault(); // biar link nggak langsung jalan
+
+        Swal.fire({
+            title: "Keluar dari sistem?",
+            text: "Apakah Anda yakin ingin keluar?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Keluar",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Kalau user tekan "Ya", baru redirect ke route logout
+                window.location.href = "{{ route('logout') }}";
+            }
+        });
+    });
+</script>

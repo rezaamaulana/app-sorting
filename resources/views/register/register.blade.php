@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <main class="form-registration w-100 m-auto">
-                <div class="page-container">
+                <div class="page-container1">
                     <h1 class="h3 mb-3 fw-normal text-center">Buat Akun</h1>
                     <form action="{{ route('post.regis') }}" method="post">
                         @csrf

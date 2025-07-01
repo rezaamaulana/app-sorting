@@ -121,9 +121,11 @@
 
 <body>
     <div class="container" id="bubbleContainerV5">
-        Selanjutnya kita bandingkan bilangan kedua dan ketiga, yaitu 4 dan 3. Diantara bilangan tersebut 4 lebih besar
-        dari 3 maka urutannya diubah (2, <b>3, 4,</b> 8, 9).
-        <br><br>
+        <a>Selanjutnya kita bandingkan bilangan kedua dan ketiga, yaitu 4 dan 3. Diantara bilangan tersebut 4 lebih
+            besar
+            dari 3 maka urutannya diubah (2, <b>3, 4,</b> 8, 9).
+            <br><br>
+        </a>
 
         <div id="bubbleIterasiV5" class="iterasi-label"></div>
         <div id="bubbleRowsV5"></div>

@@ -11,6 +11,11 @@ class HomeController extends Controller
         return view('dashboard.index');
     }
 
+    public function beranda()
+    {
+        return view('beranda.beranda');
+    }
+
     public function cptp()
     {
         return view('dashboard.panggil.cptp');

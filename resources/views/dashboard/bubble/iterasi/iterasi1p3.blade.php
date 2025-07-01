@@ -154,9 +154,11 @@
 <body>
     <!-- bubble-sort-mini-v2.html -->
     <div class="container" id="bubbleContainerV1">
-        Selanjutnya bandingkan bilangan ketiga dan keempat, yaitu 8 dan 3. Diantara bilangan tersebut 8
-        lebih besar dari 3 maka urutan bilangan akan diubah (2, 4, <b>3, 8,</b> 9).
-        <br><br>
+        <a>Selanjutnya bandingkan bilangan ketiga dan keempat, yaitu 8 dan 3. Diantara bilangan
+            tersebut 8
+            lebih besar dari 3 maka urutan bilangan akan diubah (2, 4, <b>3, 8,</b> 9).
+            <br><br>
+        </a>
 
         <div id="bubbleIterasiV1" class="iterasi-label"></div>
         <div id="bubbleRowsV1"></div>

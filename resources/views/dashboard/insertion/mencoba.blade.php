@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>Insertion Sort Interaktif dengan Animasi</title>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
+        /* ... (CSS tidak berubah) ... */
         .container {
             display: flex;
             flex-direction: column;
@@ -203,7 +208,12 @@
 
             function tukar() {
                 if (!(j > 0 && data[j - 1] > data[j])) {
-                    alert(`Salah! Angka ${data[j - 1]} tidak lebih besar dari ${data[j]}, jadi tidak ditukar.`);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Salah',
+                        text: `Angka ${data[j - 1]} < ${data[j]}, jadi tidak ditukar.`,
+                        confirmButtonText: 'Mengerti!'
+                    });
                     return;
                 }
 
@@ -236,9 +246,15 @@
 
             function tidakTukar() {
                 if (j > 0 && data[j - 1] > data[j]) {
-                    alert(`Salah! Angka ${data[j - 1]} lebih besar dari ${data[j]}, jadi harus ditukar.`);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Salah',
+                        text: `Angka ${data[j - 1]} > ${data[j]}, jadi harus ditukar.`,
+                        confirmButtonText: 'Oke'
+                    });
                     return;
                 }
+
                 history.push({
                     data: [...data]
                 });

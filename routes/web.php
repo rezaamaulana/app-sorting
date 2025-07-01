@@ -26,12 +26,12 @@ use App\Http\Controllers\RegisterController;
 /*Route::get('/', function () {
     return view('home', [
         "title" => "Home"
-    ]);
-});*/
+        ]);
+        });*/
 
 
 
-
+Route::get('/', [HomeController::class, 'beranda']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index']);
@@ -39,9 +39,7 @@ Route::post('/register', [RegisterController::class, 'store'])->name('post.regis
 Route::post('/login', [LoginController::class, 'authenticate'])->name('post.login');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard.index');
-    });
+
 
     Route::get('/dashboard/bubble', [BubbleSortController::class, 'index']);
     Route::get('/dashboard/insertion', [InsertionSortController::class, 'index']);

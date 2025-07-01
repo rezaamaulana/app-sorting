@@ -135,9 +135,10 @@
 
 <body>
     <div class="container" id="bubbleContainerV4">
-        Pada iterasi selanjutnya, kita akan mengambil bilangan pertama dan kedua lagi, yaitu 2 dan 4. Antara kedua
-        bilangan ini 2 lebih kecil dari 4 maka urutan bilangan tersebut tidak diubah (<b>2, 4,</b> 3, 8, 9).
-        <br><br>
+        <a>Pada iterasi selanjutnya, kita akan mengambil bilangan pertama dan kedua lagi, yaitu 2 dan 4. Antara kedua
+            bilangan ini 2 lebih kecil dari 4 maka urutan bilangan tersebut tidak diubah (<b>2, 4,</b> 3, 8, 9).
+            <br><br>
+        </a>
 
         <div id="bubbleIterasiV4" class="iterasi-label"></div>
         <div id="bubbleRowsV4"></div>

@@ -106,6 +106,9 @@
             border-radius: 8px;
         }
     </style>
+
+    <!-- Tambahkan SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -114,10 +117,6 @@
             <b>Pertunjuk:</b> Klik angka paling minimum untuk menukarnya ke posisi paling kiri!
         </div>
         <div id="sort1_displayArea"></div>
-
-        {{-- <div class="sort1_instruction" id="sort1_instructionText">
-            Klik angka paling minimum untuk menukarnya ke posisi paling kiri!
-        </div> --}}
 
         <div class="sort1_button-row">
             <button class="sort1_btn" id="sort1_btnTukar">Tukar</button>
@@ -165,7 +164,12 @@
                         box.addEventListener("click", () => {
                             const minIndex = sort1_findMinIndexFrom(sort1_currentIndex, sort1_data);
                             if (idx !== minIndex) {
-                                alert("Ini bukan angka paling minimum, tolong perhatikan sekali lagi.");
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Ups!',
+                                    text: 'Ini bukan angka paling minimum, tolong perhatikan sekali lagi.',
+                                    confirmButtonText: 'Oke, mengerti!'
+                                });
                                 return;
                             }
 
@@ -253,7 +257,6 @@
                 sort1_renderRow(sort1_data, sort1_currentIndex + 1);
             });
 
-            // Initial render
             sort1_renderRow(sort1_data, sort1_currentIndex + 1);
         })();
     </script>

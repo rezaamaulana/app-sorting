@@ -12,11 +12,10 @@
     </div>
 
     <div class="alert alert-info">
-        <i class="bi bi-info-circle"></i> <b>Perhatikan!</b> Pada Kolom dibawah ini kamu akan menyeret hasil dari
-        iterasi.
-        <b>Misal</b> hasil dari pengurutan iterasi 1 itu
-        deret bilangannya berapa, lalu kamu akan menyeret deret hasil yang ada didalam kolom dibawah ke tempat yang
-        disediakan.
+        <i class="bi bi-info-circle"></i> <b>Petunjuk:</b> Di bawah ini ada kolom kosong yang harus kamu isi dengan hasil
+        pengurutan dari iterasi.
+        <b>Contohnya:</b> Kalau hasil dari iterasi ke-1 adalah [2, 4, 6, 8], maka kamu tinggal seret dan letakkan
+        angka-angka tersebut ke tempat yang sudah disediakan.
     </div>
 
     <table class="table table-bordered table-hover align-middle text-center bg-white shadow">

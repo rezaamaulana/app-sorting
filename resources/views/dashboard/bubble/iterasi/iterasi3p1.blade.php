@@ -121,9 +121,11 @@
 
 <body>
     <div class="container" id="bubbleContainerV7">
-        Pada iterasi selanjutnya, kita akan mengambil bilangan pertama dan kedua, yaitu 2 dan 3. Antara bilangan ini 2
-        lebih kecil dari 3 maka urutannya tidak diubah (<b>2, 3,</b> 4, 8, 9).
-        <br><br>
+        <a>Pada iterasi selanjutnya, kita akan mengambil bilangan pertama dan kedua, yaitu 2 dan 3. Antara bilangan ini
+            2
+            lebih kecil dari 3 maka urutannya tidak diubah (<b>2, 3,</b> 4, 8, 9).
+            <br><br>
+        </a>
 
         <div id="bubbleIterasiV7" class="iterasi-label"></div>
         <div id="bubbleRowsV7"></div>

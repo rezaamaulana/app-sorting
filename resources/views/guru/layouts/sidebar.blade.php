@@ -2,7 +2,7 @@
     <div class="d-flex flex-column h-100">
         <!-- Sidebar Header -->
         <div class="sidebar-header text-center py-3">
-            <h4 class="fw-bold text-white">Sorting App</h4>
+            <h4 class="fw-bold text-white">SORTING</h4>
         </div>
 
         <!-- Scrollable Sidebar Content -->

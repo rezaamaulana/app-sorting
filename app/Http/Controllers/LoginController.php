@@ -26,7 +26,7 @@ class LoginController extends Controller
                 return redirect()->intended('/guru/hasil-belajar/Kuis-Bubble-Sort');
             }
             // jika berhasil login siswa
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->with('loginError', 'Login failed!');

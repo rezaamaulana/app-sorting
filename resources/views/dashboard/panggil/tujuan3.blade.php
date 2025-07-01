@@ -76,9 +76,10 @@
             </div>
             <div class="content">
                 <ul>
-                    <li>Siswa memahami konsep dasar Selection Sort sebagai metode pengurutan dengan memilih dan
+                    <li>Siswa memahami konsep dasar <i>Selection Sort</i> sebagai metode pengurutan dengan memilih dan
                         menempatkan angka terkecil atau terbesar ke posisi yang sesuai.</li>
-                    <li>Siswa mengidentifikasi langkah-langkah utama Selection Sort, seperti pencarian dan penukaran
+                    <li>Siswa mengidentifikasi langkah-langkah utama <i>Selection Sort</i>, seperti pencarian dan
+                        penukaran
                         angka.</li>
                 </ul>
             </div>

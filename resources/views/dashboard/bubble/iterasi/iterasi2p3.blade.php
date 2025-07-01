@@ -121,9 +121,11 @@
 
 <body>
     <div class="container" id="bubbleContainerV6">
-        Selanjutnya bandingkan bilangan ketiga dan keempat, yaitu 4 dan 8. Antara bilangan ini 4 lebih kecil dari 8 maka
-        bilangan ini tidak diubah urutannya (2, 3, 4, 8, 9).
-        <br><br>
+        <a>Selanjutnya bandingkan bilangan ketiga dan keempat, yaitu 4 dan 8. Antara bilangan ini 4 lebih kecil dari 8
+            maka
+            bilangan ini tidak diubah urutannya (2, 3, 4, 8, 9).
+            <br><br>
+        </a>
 
         <div id="bubbleIterasiV6" class="iterasi-label"></div>
         <div id="bubbleRowsV6"></div>

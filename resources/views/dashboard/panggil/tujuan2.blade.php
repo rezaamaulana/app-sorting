@@ -76,9 +76,11 @@
             </div>
             <div class="content">
                 <ul>
-                    <li>Siswa memahami konsep dasar Insertion Sort sebagai metode pengurutan dengan menyisipkan angka ke
+                    <li>Siswa memahami konsep dasar <i>Insertion Sort</i> sebagai metode pengurutan dengan menyisipkan
+                        angka ke
                         posisi yang tepat.</li>
-                    <li>Siswa mengidentifikasi langkah-langkah utama Insertion Sort, seperti pembandingan dan penyisipan
+                    <li>Siswa mengidentifikasi langkah-langkah utama <i>Insertion Sort</i>, seperti pembandingan dan
+                        penyisipan
                         angka.</li>
                 </ul>
             </div>

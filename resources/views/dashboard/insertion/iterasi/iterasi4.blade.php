@@ -104,12 +104,15 @@
 
 <body>
     <div class="container">
-        Pada iterasi ini, kita mengambil angka kelima, yaitu 4. Lalu bandingkan 6 dan 4, didapatkan bahwa 6 lebih besar
-        dari 4 maka angka tersebut akan ditukar. Selanjutnya, kita akan membandingkan dengan angka sebelumnya,
-        bandingkan 4 dan 5. Apakah 4 lebih kecil dari 5? Karena iya, kita akan menukar 5 dengan 4. Setelah itu, kita
-        akan mengecek dengan angka sebelumnya lagi, yaitu 2. Apakah 4 lebih kecil dari 2? Karena 4 tidak lebih kecil
-        dari 2, maka 4 sudah
-        pada posisi benar, yaitu setelah 2 dan sebelum 5. Maka urutannya berubah (1, 2, 5, 6, 4) menjadi (1, 2, 4, 5, 6)
+        <a>Pada iterasi ini, kita mengambil angka kelima, yaitu 4. Lalu bandingkan 6 dan 4, didapatkan bahwa 6 lebih
+            besar
+            dari 4 maka angka tersebut akan ditukar. Selanjutnya, kita akan membandingkan dengan angka sebelumnya,
+            bandingkan 4 dan 5. Apakah 4 lebih kecil dari 5? Karena iya, kita akan menukar 5 dengan 4. Setelah itu, kita
+            akan mengecek dengan angka sebelumnya lagi, yaitu 2. Apakah 4 lebih kecil dari 2? Karena 4 tidak lebih kecil
+            dari 2, maka 4 sudah
+            pada posisi benar, yaitu setelah 2 dan sebelum 5. Maka urutannya berubah (1, 2, 5, 6, 4) menjadi (1, 2, 4,
+            5, 6)
+        </a>
         <div id="displayAreaIterasi4"></div>
 
         <div class="instruction" id="instructionTextIterasi4">
